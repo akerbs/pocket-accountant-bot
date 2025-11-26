@@ -352,7 +352,7 @@ export class PocketAccountantBot {
   }
 
   private async handleCallbackQuery(ctx: Context) {
-    if (!ctx.from || !('data' in ctx.callbackQuery)) return;
+    if (!ctx.from || !ctx.callbackQuery || !('data' in ctx.callbackQuery)) return;
 
     const data = ctx.callbackQuery.data;
 
