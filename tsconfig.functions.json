@@ -4,8 +4,14 @@
     "outDir": "netlify/functions",
     "rootDir": ".",
     "module": "ES2022",
-    "target": "ES2022"
+    "target": "ES2022",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": false,
+    "allowJs": true
   },
-  "include": ["netlify/functions/**/*"]
+  "include": ["netlify/functions/**/*"],
+  "exclude": ["node_modules"]
 }
 

@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js",
-    "build": "npm run prisma:generate && rimraf dist && tsc -p tsconfig.json && tsc -p tsconfig.functions.json",
+    "build": "npm run prisma:generate && rimraf dist && tsc -p tsconfig.json",
     "lint": "tsc --noEmit",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
+    "prisma:migrate:deploy": "prisma migrate deploy",
     "db:setup": "node scripts/setup-database.js",
     "db:setup:migrate": "node scripts/setup-database.js --migrate",
     "db:validate": "node scripts/validate-database-url.js",

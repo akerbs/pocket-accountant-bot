@@ -5,7 +5,7 @@
 
 [functions]
   node_bundler = "esbuild"
-  included_files = ["dist/**", "prisma/**", "node_modules/.prisma/**"]
+  included_files = ["dist/**", "prisma/**", "node_modules/.prisma/**", "node_modules/@prisma/**"]
 
 [[redirects]]
   from = "/webhook"
