@@ -75,7 +75,7 @@ export class StatsService {
           limitInfo:
             limitStatus.type === 'active'
               ? {
-                  amount: limitStatus.amount,
+                  amount: Number(limitStatus.amount),
                   spent: limitStatus.spent,
                   exceeded: limitStatus.isExceeded,
                 }

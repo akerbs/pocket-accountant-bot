@@ -78,7 +78,7 @@ export class LimitService {
       from: periodStart,
       to: periodEnd,
     });
-    const coverage = spent / limit.amount;
+    const coverage = spent / Number(limit.amount);
 
     return {
       type: 'active',
@@ -86,7 +86,7 @@ export class LimitService {
       categoryName: limit.category.name,
       emoji: limit.category.emoji,
       spent,
-      amount: limit.amount,
+      amount: Number(limit.amount),
       coverage,
       threshold: limit.threshold / 100,
       isExceeded: coverage >= 1,
@@ -124,7 +124,7 @@ export class LimitService {
           '⚠️ *Лимит почти исчерпан!*',
           `${status.emoji ?? '💰'} ${status.categoryName}`,
           `Потрачено ${status.spent.toFixed(0)} / ${status.amount.toFixed(0)}`,
-          `Остаток: ${(status.amount - status.spent).toFixed(0)}`,
+          `Остаток: ${(Number(status.amount) - status.spent).toFixed(0)}`,
         ].join('\n'),
       });
 

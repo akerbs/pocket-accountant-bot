@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment variables (будут настроены в Netlify Dashboard)
+.env
+.env.local
+.env.*.local
+
+# Build output (будет создан при сборке)
+dist/
+build/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Database (локальные файлы)
+prisma/dev.db
+prisma/dev.db-journal
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+prisma/prisma/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Git
+.git/
+.gitignore
+
+# Документация (опционально, можно оставить)
+# DATABASE_SETUP.md
+# FIX_DATABASE_URL.md
+# HOW_TO_GET_CONNECTION_POOLING.md
+# QUICK_DATABASE_SETUP.md
+# TROUBLESHOOTING_DATABASE.md
+# UPDATE_ENV.md
+# DEPLOY_DRAG_DROP.md
+

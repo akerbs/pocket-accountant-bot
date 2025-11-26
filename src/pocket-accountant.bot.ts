@@ -398,7 +398,7 @@ export class PocketAccountantBot {
   }
 
   private async handleText(ctx: Context) {
-    if (!ctx.from || !('text' in ctx.message)) return;
+    if (!ctx.from || !ctx.message || !('text' in ctx.message)) return;
     const intent = this.pendingStore.get(ctx.from.id);
 
     if (intent?.type === 'add_purchase') {

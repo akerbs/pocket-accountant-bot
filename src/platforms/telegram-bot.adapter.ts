@@ -83,11 +83,11 @@ export class TelegramBotAdapter implements BotPlatform {
       ).reply_markup;
     }
 
-    await this.bot.telegram.editMessageText(chatId, messageId, undefined, text, extra);
+    await this.bot.telegram.editMessageText(chatId, Number(messageId), undefined, text, extra);
   }
 
   async deleteMessage(chatId: string | number, messageId: string | number): Promise<void> {
-    await this.bot.telegram.deleteMessage(chatId, messageId);
+    await this.bot.telegram.deleteMessage(chatId, Number(messageId));
   }
 
   onStart(handler: (ctx: BotContext) => Promise<void> | void): void {
@@ -167,8 +167,8 @@ export class TelegramBotAdapter implements BotPlatform {
     // Если это callback query, пытаемся получить message из callbackQuery
     if (!message && 'callback_query' in ctx && ctx.callbackQuery && 'message' in ctx.callbackQuery) {
       const callbackMessage = ctx.callbackQuery.message;
-      if (callbackMessage && 'text' in callbackMessage) {
-        message = callbackMessage;
+      if (callbackMessage && 'text' in callbackMessage && 'chat' in callbackMessage) {
+        message = callbackMessage as any;
         chat = callbackMessage.chat;
       }
     }
