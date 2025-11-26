@@ -1,15 +1,20 @@
 import "dotenv/config";
-import { PocketAccountantBot } from "./pocket-accountant.bot.js";
+import { env } from "./config/env.js";
+import { TelegramBotAdapter } from "./platforms/telegram-bot.adapter.js";
+import { BotHandler } from "./handlers/bot-handler.js";
 import { logger } from "./logger.js";
 
 async function bootstrap() {
   logger.info("Инициализация бота...");
 
-  const bot = new PocketAccountantBot();
+  const platform = new TelegramBotAdapter(env.BOT_TOKEN);
+  const handler = new BotHandler(platform);
+  handler.registerHandlers();
+
   logger.info("Экземпляр бота создан, запускаю подключение...");
 
   try {
-    await bot.launch();
+    await platform.launch();
     logger.info("✅ Карманный бухгалтер запущен и готов к работе!");
   } catch (error) {
     logger.error(error, "Ошибка при запуске бота");
@@ -18,11 +23,11 @@ async function bootstrap() {
 
   process.once("SIGINT", () => {
     logger.info("Получен SIGINT, останавливаю бота...");
-    bot.stop("SIGINT");
+    platform.stop("SIGINT");
   });
   process.once("SIGTERM", () => {
     logger.info("Получен SIGTERM, останавливаю бота...");
-    bot.stop("SIGTERM");
+    platform.stop("SIGTERM");
   });
 }
 

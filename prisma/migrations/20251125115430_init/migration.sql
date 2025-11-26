@@ -5,8 +5,8 @@ CREATE TABLE "User" (
     "firstName" TEXT,
     "username" TEXT,
     "currency" TEXT NOT NULL DEFAULT 'RUB',
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL
 );
 
 -- CreateTable
@@ -15,7 +15,7 @@ CREATE TABLE "Category" (
     "userId" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "emoji" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "Category_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -26,8 +26,8 @@ CREATE TABLE "Purchase" (
     "categoryId" TEXT NOT NULL,
     "amount" DECIMAL NOT NULL,
     "note" TEXT,
-    "spentAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "spentAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "Purchase_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "Purchase_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -38,12 +38,12 @@ CREATE TABLE "CategoryLimit" (
     "userId" TEXT NOT NULL,
     "categoryId" TEXT NOT NULL,
     "period" TEXT NOT NULL DEFAULT 'MONTH',
-    "periodStart" DATETIME NOT NULL,
+    "periodStart" TIMESTAMP(3) NOT NULL,
     "amount" DECIMAL NOT NULL,
     "threshold" INTEGER NOT NULL DEFAULT 90,
-    "lastNotifiedAt" DATETIME,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
+    "lastNotifiedAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     CONSTRAINT "CategoryLimit_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "CategoryLimit_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );

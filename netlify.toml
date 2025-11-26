@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  functions = "netlify/functions"
+  publish = "."
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["dist/**", "prisma/**", "node_modules/.prisma/**"]
+
+[[redirects]]
+  from = "/webhook"
+  to = "/.netlify/functions/webhook"
+  status = 200
+

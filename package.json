@@ -6,12 +6,17 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js",
-    "build": "rimraf dist && tsc -p tsconfig.json",
+    "build": "npm run prisma:generate && rimraf dist && tsc -p tsconfig.json && tsc -p tsconfig.functions.json",
     "lint": "tsc --noEmit",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev"
+    "prisma:migrate": "prisma migrate dev",
+    "db:setup": "node scripts/setup-database.js",
+    "db:setup:migrate": "node scripts/setup-database.js --migrate",
+    "db:validate": "node scripts/validate-database-url.js",
+    "db:test": "node scripts/test-connection.js"
   },
   "dependencies": {
+    "@netlify/functions": "^2.5.0",
     "@prisma/client": "^5.19.0",
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",

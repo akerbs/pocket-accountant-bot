@@ -6,18 +6,18 @@ type PendingIntent =
   | { type: 'set_limit_amount'; categoryId: string };
 
 export class PendingIntentStore {
-  private store = new Map<number, PendingIntent>();
+  private store = new Map<string, PendingIntent>();
 
-  set(userId: number, intent: PendingIntent) {
-    this.store.set(userId, intent);
+  set(userId: string | number, intent: PendingIntent) {
+    this.store.set(String(userId), intent);
   }
 
-  get(userId: number) {
-    return this.store.get(userId);
+  get(userId: string | number) {
+    return this.store.get(String(userId));
   }
 
-  clear(userId: number) {
-    this.store.delete(userId);
+  clear(userId: string | number) {
+    this.store.delete(String(userId));
   }
 }
 
